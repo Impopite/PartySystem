@@ -1,0 +1,9 @@
+# Plugin developed by zImpoo [Telegram: @tentava | Discord: Impopite]
+
+prefix: "&8&l(&6&lᴘʀᴏᴊᴇᴄᴛ ɴᴀᴍᴇ&8&l) &r" # Lasciare spazio finale
+
+message:
+  no-permission: "&4&lNon hai abbastanza permessi!"
+  console-cant-do-command: "&4&lSolo un player può eseguire questo comando"
+  unknown-command: "&c&lComando sconosciuto."
+  player-not-found: "&c&oPlayer non trovato."
