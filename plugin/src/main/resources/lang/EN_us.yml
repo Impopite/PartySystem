@@ -1,9 +1,52 @@
 # Plugin developed by zImpoo [Telegram: @tentava | Discord: Impopite]
 
-prefix: "&8&l(&6&lᴘʀᴏᴊᴇᴄᴛ ɴᴀᴍᴇ&8&l) &r" # Leave the final space
+# TODO -> comments for explanation + placeholders
+prefix: "&8&l(&b&lᴘᴀʀᴛʏ ꜱʏꜱᴛᴇᴍ&8&l) &r\n\n" # Leave the final space
 
 message:
   no-permission: "&4&lYou don't have enough permissions!"
   console-cant-do-command: "&4&lOnly players can execute this command"
   unknown-command: "&c&lUnknown command."
   player-not-found: "&c&oPlayer not found."
+
+party:
+  # CREATION / DELETION
+  party-created: "&7You created a new party!"
+
+  party-deleted: "&7You deleted your party!"
+  party-deleted-other: "&7{player}'s party has been deleted!"
+
+  # INVITES
+  party-invite: "&7You invited &f{player}&a&l to join your party!"
+  already-invited: "&c&lYou already invited this player!"
+
+  party-invite-request: "§f{player} §7invited you to their party, do you want to join?"
+
+  reject-invite: "§7You rejected the invite!"
+  reject-invite-leader: "§f{player} §7rejected the invite!"
+
+  expired-invite: "§cInvite expired or invalid!"
+
+  # JOIN / LEAVE
+  party-join: "&f{player} &7joined your party!"
+  party-join-target: "§7You joined &f{player}§7's party!"
+  party-join-other: "§f{player} §7joined the party!"
+
+  party-left: "&f{player} §7left your party!"
+
+  # MEMBER MANAGEMENT
+  player-removed: "&7You removed &f{player} §7from your party!"
+  player-removed-target: "§7You were removed from the party!"
+
+  player-not-in-party: "§cThe player is not in your party!"
+
+  # PARTY ERRORS
+  already-in-party: "&c&lYou are already in a party!"
+  player-already-in-party: "&c&lThe player is already in a party!"
+
+  not-in-party: "&c&lYou are not in a party!"
+  not-party-leader: "&c&lYou are not the party leader!"
+  not-owner: "&c&lYou are not the party owner!"
+
+  leader-offline: "§cThe party leader is offline."
+  party-not-exists: "§cThe party does not exist."

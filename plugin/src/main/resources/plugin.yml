@@ -1,6 +1,6 @@
-name: DefaultProject
+name: PartySystem
 version: '${version}'
 
-main: it.impo.defaultProject.DefaultProject
+main: it.impo.partySystem.PartySystem
 api-version: '1.21.8'
 load: POSTWORLD
