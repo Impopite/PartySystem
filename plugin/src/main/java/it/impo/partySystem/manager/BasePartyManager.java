@@ -29,6 +29,11 @@ public class BasePartyManager extends PartyManager {
 
     public BasePartyManager(PartySystem plugin) {
         this.plugin = plugin;
+
+        Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, () -> {
+            long now = System.currentTimeMillis();
+            pendingInvites.entrySet().removeIf(e -> now > e.getValue().expiresAt());
+        }, 20L * 30, 20L * 30);
     }
 
     @Override
@@ -82,11 +87,11 @@ public class BasePartyManager extends PartyManager {
         Party party = getPartyByOwner(owner.getUniqueId());
 
         if (party == null) {
-            owner.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.NOT_OWNER));
+            owner.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.NOT_PARTY_LEADER));
             return;
         }
 
-        if (party.members().containsKey(target.getUniqueId())) {
+        if (playerIsInParty(target)) {
             owner.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PLAYER_ALREADY_IN_PARTY));
             return;
         }
@@ -159,7 +164,7 @@ public class BasePartyManager extends PartyManager {
         Party party = getPartyByOwner(owner.getUniqueId());
 
         if (party == null) {
-            owner.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.NOT_OWNER));
+            owner.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.NOT_PARTY_LEADER));
             return;
         }
 
@@ -190,11 +195,39 @@ public class BasePartyManager extends PartyManager {
 
         player.sendMessage(text("§bᴘᴀʀᴛʏ ɪɴꜰᴏ"));
         player.sendMessage(text("§4Leader: §f" + (ownerName != null ? ownerName : "Unknown")));
-        player.sendMessage(text("§cMembri: §7" + (party.members().isEmpty() ? "Empty" : "")));
+        player.sendMessage(text("§cMembers: §7" + (party.members().isEmpty() ? "Empty" : "")));
 
         party.members().forEach((uuid, name) ->
                 player.sendMessage(text("§7- " + name))
         );
+    }
+
+    @Override
+    public void partyLeave(Player player) {
+        Party party = getPartyByMember(player.getUniqueId());
+        if (party == null) {
+            player.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.NOT_IN_PARTY));
+            return;
+        }
+
+        Player leader = Bukkit.getPlayer(party.ownerUUID());
+        if(leader == null) {
+            player.sendMessage(text("§cᴇʀʀᴏʀ\n\n §7Contact a staff member."));
+            return;
+        }
+
+        if(leader.equals(player)) {
+            removeParty(leader);
+            return;
+        }
+
+        party.members().remove(player.getUniqueId());
+        plugin.getPartyTable().saveParty(party.ownerUUID(), party.members());
+
+        leader.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PARTY_LEFT_LEADER)
+                .replaceText(config -> config.matchLiteral("{player}").replacement(player.getName())));
+        player.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PARTY_LEFT)
+                .replaceText(config -> config.matchLiteral("{player}").replacement(leader.getName())));
     }
 
     @Override

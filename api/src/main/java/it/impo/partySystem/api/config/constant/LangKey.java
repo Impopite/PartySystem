@@ -24,6 +24,7 @@ public enum LangKey {
     PARTY_JOIN("party.party-join"),
     PARTY_JOIN_TARGET("party.party-join-target"),
     PARTY_JOIN_OTHER("party.party-join-other"),
+    PARTY_LEFT_LEADER("party.party-left-leader"),
     PARTY_LEFT("party.party-left"),
 
     PLAYER_REMOVED("party.player-removed"),
@@ -34,7 +35,6 @@ public enum LangKey {
     PLAYER_ALREADY_IN_PARTY("party.player-already-in-party"),
     NOT_IN_PARTY("party.not-in-party"),
     NOT_PARTY_LEADER("party.not-party-leader"),
-    NOT_OWNER("party.not-owner"),
     LEADER_OFFLINE("party.leader-offline"),
     PARTY_NOT_EXISTS("party.party-not-exists"),
 

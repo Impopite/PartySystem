@@ -17,7 +17,7 @@ public class DatabaseCredentials {
     public DatabaseCredentials(PartySystem plugin) {
         var config = plugin.getConfigLoader();
         this.host = config.get(ConfigKey.DATABASE_HOST, "localhost");
-        this.database = config.get(ConfigKey.DATABASE_NAME, "PartySystemDatabase");
+        this.database = config.get(ConfigKey.DATABASE_NAME, "partysystem_database");
         this.username = config.get(ConfigKey.DATABASE_USERNAME, "root");
         this.password = config.get(ConfigKey.DATABASE_PASSWORD, "");
         this.port = config.get(ConfigKey.DATABASE_PORT, 3306);

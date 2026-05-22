@@ -25,6 +25,7 @@ public class BasePartyTable extends PartyTable {
                 members       TEXT          DEFAULT NULL
             );
             """;
+
     @Language("SQL")
     private static final String SAVE_PARTY = "INSERT INTO partysystem_party(ownerUUID, members) VALUES (?, ?);";
 

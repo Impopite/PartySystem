@@ -1,7 +1,5 @@
 # Plugin developed by zImpoo [Telegram: @tentava | Discord: Impopite]
-
-# TODO -> comments for explanation + placeholders
-prefix: "&8&l(&b&lᴘᴀʀᴛʏ ꜱʏꜱᴛᴇᴍ&8&l) &r\n\n" # Lasciare spazio finale
+prefix: "\n&8&l(&b&lᴘᴀʀᴛʏ ꜱʏꜱᴛᴇᴍ&8&l) &r\n\n" # Lasciare spazio finale
 
 message:
   no-permission: "&4&lNon hai abbastanza permessi!"
@@ -10,43 +8,85 @@ message:
   player-not-found: "&c&oPlayer non trovato."
 
 party:
-  # CREAZIONE / ELIMINAZIONE
+  # +--------------------------------------+
+  # |       CREAZIONE / ELIMINAZIONE       |
+  # +--------------------------------------+
+  # Messaggio inviato al player durante la creazione del party
   party-created: "&7Hai creato un nuovo party!"
-
+  # Messaggio inviato al player durante l'eliminazione del party
   party-deleted: "&7Hai eliminato il tuo party!"
+  # Messaggio inviato ai membri del party quando il leader elimina il party
   party-deleted-other: "&7Il party di &6{player} &7è stato eliminato!"
 
-  # INVITI
+
+  # +--------------------+
+  # |       INVITI       |
+  # +--------------------+
+  # Messaggio inviato al leader del party quando invita un player.
+  # Il placeholder {player} rappresenta il nome del player invitato.
   party-invite: "&7Hai invitato &f{player}&a&l a unirsi al tuo party!"
+  # Messaggio inviato al leader del party quando tenta di invitare un player già invitato.
   already-invited: "&c&lHai già invitato questo player!"
 
-  party-invite-request: "§f{player} §7ti ha invitato al suo party, vuoi entrare?"
-
+  # Messaggio inviato al player invitato quando riceve un invito. Lascia "\n" alla fine
+  # Il placeholder {player} rappresenta il nome del leader del party.
+  party-invite-request: "§f{player} §7ti ha invitato al suo party, vuoi entrare? \n"
+  # Messaggio inviato al player invitato quando rifiuta un invito.
   reject-invite: "§7Hai rifiutato l'invito!"
+  # Messaggio inviato al leader del party quando un player rifiuta un invito.
   reject-invite-leader: "§f{player} §7ha rifiutato l'invito!"
 
+  # Messaggio inviato al player invitato quando l'invito è scaduto o non valido.
   expired-invite: "§cInvito scaduto o non valido!"
 
-  # JOIN / LEAVE
+
+  # +------------------------------+
+  # |       ENTRATE / USCITE       |
+  # +------------------------------+
+  # Messaggio inviato al leader del party quando un player entra nel party.
+  # Il placeholder {player} rappresenta il nome del player che è entrato nel party.
   party-join: "&f{player} &7è entrato nel tuo party!"
+  # Messaggio inviato al player che entra nel party.
+  # Il placeholder {player} rappresenta il nome del leader del party.
   party-join-target: "§7Sei entrato nel party di &f{player}§7!"
+  # Messaggio inviato ai membri del party quando un player entra nel party.
+  # Il placeholder {player} rappresenta il nome del player che è entrato nel party.
   party-join-other: "§f{player} §7è entrato nel party!"
 
-  party-left: "&f{player} §7ha lasciato il tuo party!"
+  # Messaggio inviato al leader del party quando un player lascia il party.
+  # Il placeholder {player} rappresenta il nome del player che ha lasciato il party
+  party-left-leader: "&f{player} §7ha lasciato il tuo party!"
+  # Messaggio inviato al player che lascia il party.
+    # Il placeholder {player} rappresenta il nome del leader del party.
+  party-left: "§7Hai lasciato il party di &f{player}§7!"
 
-  # GESTIONE MEMBRI
+  # +-------------------------------+
+  # |       PLAYER MANAGEMENT       |
+  # +-------------------------------+
+  # Messaggio inviato al leader del party quando rimuove un player dal party.
+  # Il placeholder {player} rappresenta il nome del player rimosso dal party.
   player-removed: "&7Hai rimosso &f{player} §7dal tuo party!"
+  # Messaggio inviato al player rimosso dal party.
   player-removed-target: "§7Sei stato rimosso dal party!"
 
+  # Messaggio inviato al leader del party quando tenta di rimuovere un player che non è nel party.
   player-not-in-party: "§cIl player non è nel tuo party!"
 
-  # ERRORI PARTY
+
+  # +--------------------------+
+  # |       PARTY ERRORS       |
+  # +--------------------------+
+  # Messaggio inviato al player quando tenta di creare o entrare in un party mentre è già in un party.
   already-in-party: "&c&lSei già in un party!"
+  # Messaggio inviato al player quando tenta di invitare un player che è già in un party.
   player-already-in-party: "&c&lIl player è già in un party!"
 
+  # Messaggio inviato al player quando tenta di eseguire un comando del party ma non è in un party.
   not-in-party: "&c&lNon sei in un party!"
+  # Messaggio inviato al player quando tenta di eseguire un comando del party ma non ne è il leader.
   not-party-leader: "&c&lNon sei il leader del party!"
-  not-owner: "&c&lNon sei il proprietario del party!"
 
+  # Messaggio inviato al player quando il leader del party è offline.
   leader-offline: "§cIl leader del party è offline."
-  party-not-exists: "§cIl party non esiste."
+  # Messaggio inviato al player quando tenta di eseguire un comando su un party che non esiste.
+  party-not-exists: "§cIl party non esiste. Contatta uno staffer se pensi sia un errore."

@@ -26,10 +26,11 @@ public class PartyCommand {
                         new DeleteCommand(plugin).get(),
                         new InviteCommand(plugin).get(),
                         new RemoveCommand(plugin).get(),
-                        new InfoCommand(plugin).get()
+                        new InfoCommand(plugin).get(),
+                        new LeaveCommand(plugin).get()
                 )
                 .executesPlayer((player, args) -> {
-                    player.sendMessage("§cUsa /party help");
+                    player.sendMessage("§cUse /party help");
                 });
     }
 }

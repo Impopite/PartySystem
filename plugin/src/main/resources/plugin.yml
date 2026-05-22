@@ -1,5 +1,5 @@
 name: PartySystem
-version: '${version}'
+version: 1.0.0
 
 main: it.impo.partySystem.PartySystem
 api-version: '1.21.8'

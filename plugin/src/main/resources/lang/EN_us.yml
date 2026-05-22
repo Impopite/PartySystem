@@ -1,7 +1,5 @@
 # Plugin developed by zImpoo [Telegram: @tentava | Discord: Impopite]
-
-# TODO -> comments for explanation + placeholders
-prefix: "&8&l(&b&lᴘᴀʀᴛʏ ꜱʏꜱᴛᴇᴍ&8&l) &r\n\n" # Leave the final space
+prefix: "\n&8&l(&b&lᴘᴀʀᴛʏ ꜱʏꜱᴛᴇᴍ&8&l) &r\n\n" # Leave the final space
 
 message:
   no-permission: "&4&lYou don't have enough permissions!"
@@ -10,43 +8,83 @@ message:
   player-not-found: "&c&oPlayer not found."
 
 party:
-  # CREATION / DELETION
+  # +--------------------------------------+
+  # |        CREATION / DELETION           |
+  # +--------------------------------------+
+  # Message sent to the player when creating a party
   party-created: "&7You created a new party!"
-
+  # Message sent to the player when deleting the party
   party-deleted: "&7You deleted your party!"
+  # Message sent to party members when the leader deletes the party
   party-deleted-other: "&7{player}'s party has been deleted!"
 
-  # INVITES
+
+  # +--------------------+
+  # |       INVITES      |
+  # +--------------------+
+  # Message sent to the party leader when inviting a player.
+  # The placeholder {player} represents the invited player's name.
   party-invite: "&7You invited &f{player}&a&l to join your party!"
+  # Message sent to the party leader when trying to invite a player who has already been invited.
   already-invited: "&c&lYou already invited this player!"
 
+  # Message sent to the invited player when receiving an invite. Leave the final "\n"
+  # The placeholder {player} represents the party leader's name.
   party-invite-request: "§f{player} §7invited you to their party, do you want to join?"
-
+  # Message sent to the invited player when rejecting an invite.
   reject-invite: "§7You rejected the invite!"
+  # Message sent to the party leader when a player rejects an invite.
   reject-invite-leader: "§f{player} §7rejected the invite!"
 
+  # Message sent to the invited player when the invite is expired or invalid.
   expired-invite: "§cInvite expired or invalid!"
 
-  # JOIN / LEAVE
+
+  # +------------------------------+
+  # |         JOIN / LEAVE         |
+  # +------------------------------+
+  # Message sent to the party leader when a player joins the party.
+  # The placeholder {player} represents the player who joined the party.
   party-join: "&f{player} &7joined your party!"
+  # Message sent to the player who joins the party.
+  # The placeholder {player} represents the party leader's name.
   party-join-target: "§7You joined &f{player}§7's party!"
+  # Message sent to party members when a player joins the party.
+  # The placeholder {player} represents the player who joined the party.
   party-join-other: "§f{player} §7joined the party!"
 
+  # Message sent to the party leader when a player leaves the party.
+  # The placeholder {player} represents the player who left the party.
   party-left: "&f{player} §7left your party!"
 
-  # MEMBER MANAGEMENT
+
+  # +-------------------------------+
+  # |       PLAYER MANAGEMENT       |
+  # +-------------------------------+
+  # Message sent to the party leader when removing a player from the party.
+  # The placeholder {player} represents the removed player's name.
   player-removed: "&7You removed &f{player} §7from your party!"
+  # Message sent to the removed player.
   player-removed-target: "§7You were removed from the party!"
 
+  # Message sent to the party leader when trying to remove a player who is not in the party.
   player-not-in-party: "§cThe player is not in your party!"
 
-  # PARTY ERRORS
+
+  # +--------------------------+
+  # |       PARTY ERRORS       |
+  # +--------------------------+
+  # Message sent to the player when trying to create or join a party while already being in one.
   already-in-party: "&c&lYou are already in a party!"
+  # Message sent to the player when trying to invite a player who is already in party.
   player-already-in-party: "&c&lThe player is already in a party!"
 
+  # Message sent to the player when trying to execute a party command while not being in party.
   not-in-party: "&c&lYou are not in a party!"
+  # Message sent to the player when trying to execute a party command while not being the leader.
   not-party-leader: "&c&lYou are not the party leader!"
-  not-owner: "&c&lYou are not the party owner!"
 
+  # Message sent to the player when the party leader is offline.
   leader-offline: "§cThe party leader is offline."
-  party-not-exists: "§cThe party does not exist."
+  # Message sent to the player when trying to execute a command on a party that does not exist.
+  party-not-exists: "§cThe party does not exist. Contact a staff member if you think this is an error."

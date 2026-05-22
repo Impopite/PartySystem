@@ -13,8 +13,14 @@ public class HikariCP {
     public HikariCP(PartySystem plugin, DatabaseCredentials credentials) {
         HikariConfig config = new HikariConfig();
 
-        config.setJdbcUrl(String.format("jdbc:mysql://%s:%s/%s",
-                credentials.getHost(), credentials.getPort(), credentials.getDatabase()));
+        config.setJdbcUrl(String.format(
+                "jdbc:mysql://%s:%s/%s?useSSL=%s&allowPublicKeyRetrieval=true&sslMode=%s",
+                credentials.getHost(),
+                credentials.getPort(),
+                credentials.getDatabase(),
+                credentials.isSsl(),
+                credentials.isSsl() ? "REQUIRED" : "DISABLED"
+        ));
         config.setUsername(credentials.getUsername());
         config.setPassword(credentials.getPassword());
         config.setPoolName(plugin.getProjectName() + "-pool");

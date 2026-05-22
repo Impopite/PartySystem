@@ -7,6 +7,6 @@ database:
   host: "localhost"
   username: "root"
   password: ""
-  port: "3306"
-  databaseName: "DatabaseName"
-  ssl: true
+  port: 3306
+  name: "partysystem_database"
+  ssl: false

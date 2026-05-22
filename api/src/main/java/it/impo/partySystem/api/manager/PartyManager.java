@@ -17,6 +17,8 @@ public abstract class PartyManager {
 
     public abstract void partyInfo(Player player);
 
+    public abstract void partyLeave(Player player);
+
     public abstract boolean playerIsInParty(Player player);
 
     public abstract Map<Integer, Party> getPartyCache();

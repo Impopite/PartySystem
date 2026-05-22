@@ -14,12 +14,14 @@ public class HelpCommand {
                 });
     }
 
-    // TODO -> restyle
     private void sendHelp(Player player) {
         player.sendMessage(text("§bᴘᴀʀᴛʏ ᴄᴏᴍᴍᴀɴᴅ ʜᴇʟᴘ:\n"));
         player.sendMessage("");
         player.sendMessage("§7/party create");
+        player.sendMessage("§7/party delete");
         player.sendMessage("§7/party invite <player>");
+        player.sendMessage("§7/party remove <player>");
+        player.sendMessage("§7/party info");
         player.sendMessage("§7/party leave");
         player.sendMessage("");
     }
