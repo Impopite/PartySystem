@@ -1,4 +1,4 @@
-rootProject.name = "DefaultProject"
+rootProject.name = "PartySystem"
 
 include("api")
 include("plugin")
