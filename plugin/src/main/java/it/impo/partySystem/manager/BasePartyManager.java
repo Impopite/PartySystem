@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static net.kyori.adventure.text.Component.text;
@@ -21,8 +22,8 @@ import static net.kyori.adventure.text.Component.text;
 public class BasePartyManager extends PartyManager {
 
     private final PartySystem plugin;
-    private final Map<Integer, Party> partyCache = new HashMap<>();
-    private final Map<UUID, PendingInvite> pendingInvites = new HashMap<>();
+    private final Map<Integer, Party> partyCache = new ConcurrentHashMap<>();
+    private final Map<UUID, PendingInvite> pendingInvites = new ConcurrentHashMap<>();
     private final AtomicInteger idCounter = new AtomicInteger(1);
 
     private static final long INVITE_EXPIRE_MS = 30_000L;
@@ -74,7 +75,7 @@ public class BasePartyManager extends PartyManager {
             party.members().keySet().forEach(uuid -> {
                 Player member = Bukkit.getPlayer(uuid);
                 if (member != null) member.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PARTY_DELETED_OTHER)
-                        .replaceText(config -> config .matchLiteral("{player}").replacement(owner.getName())));
+                        .replaceText(config -> config.matchLiteral("{player}").replacement(owner.getName())));
             });
 
             partyCache.remove(party.id());
@@ -103,10 +104,10 @@ public class BasePartyManager extends PartyManager {
 
         pendingInvites.put(target.getUniqueId(), new PendingInvite(owner.getUniqueId(), System.currentTimeMillis() + INVITE_EXPIRE_MS));
         owner.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PARTY_INVITE)
-                .replaceText(config -> config .matchLiteral("{player}").replacement(target.getName())));
+                .replaceText(config -> config.matchLiteral("{player}").replacement(target.getName())));
 
         Component message = plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PARTY_INVITE_REQUEST)
-                .replaceText(config -> config .matchLiteral("{player}").replacement(owner.getName()))
+                .replaceText(config -> config.matchLiteral("{player}").replacement(owner.getName()))
                 .append(
                         Component.text("§a[✓] ")
                                 .clickEvent(ClickEvent.callback(audience -> {
@@ -135,9 +136,9 @@ public class BasePartyManager extends PartyManager {
                                     plugin.getPartyTable().saveParty(targetParty.ownerUUID(), targetParty.members());
 
                                     p.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PARTY_JOIN)
-                                            .replaceText(config -> config .matchLiteral("{player}").replacement(ownerPlayer.getName())));
+                                            .replaceText(config -> config.matchLiteral("{player}").replacement(ownerPlayer.getName())));
                                     ownerPlayer.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PARTY_JOIN_OTHER)
-                                            .replaceText(config -> config .matchLiteral("{player}").replacement(p.getName())));
+                                            .replaceText(config -> config.matchLiteral("{player}").replacement(p.getName())));
                                 }))
                 )
                 .append(
@@ -150,7 +151,7 @@ public class BasePartyManager extends PartyManager {
                                         Player ownerPlayer = Bukkit.getPlayer(invite.ownerUUID());
                                         if (ownerPlayer != null)
                                             ownerPlayer.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.REJECT_INVITE_LEADER)
-                                                    .replaceText(config -> config .matchLiteral("{player}").replacement(p.getName())));
+                                                    .replaceText(config -> config.matchLiteral("{player}").replacement(p.getName())));
                                     }
                                     p.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.REJECT_INVITE));
                                 }))
@@ -177,9 +178,9 @@ public class BasePartyManager extends PartyManager {
         plugin.getPartyTable().saveParty(party.ownerUUID(), party.members());
 
         owner.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PLAYER_REMOVED)
-                .replaceText(config -> config .matchLiteral("{player}").replacement(target.getName())));
+                .replaceText(config -> config.matchLiteral("{player}").replacement(target.getName())));
         target.sendMessage(plugin.getConfigLoader().getLangLoader().getString(LangKey.PREFIX, LangKey.PLAYER_REMOVED_TARGET)
-                .replaceText(config -> config .matchLiteral("{player}").replacement(owner.getName())));
+                .replaceText(config -> config.matchLiteral("{player}").replacement(owner.getName())));
     }
 
     @Override
@@ -211,12 +212,12 @@ public class BasePartyManager extends PartyManager {
         }
 
         Player leader = Bukkit.getPlayer(party.ownerUUID());
-        if(leader == null) {
+        if (leader == null) {
             player.sendMessage(text("§cᴇʀʀᴏʀ\n\n §7Contact a staff member."));
             return;
         }
 
-        if(leader.equals(player)) {
+        if (leader.equals(player)) {
             removeParty(leader);
             return;
         }
